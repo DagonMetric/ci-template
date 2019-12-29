@@ -1,0 +1,9 @@
+steps:
+- task: PublishTestResults@2
+  inputs:
+    testRunTitle: $(packageName)
+    searchFolder: $(System.DefaultWorkingDirectory)/dist/junit/$(packageName)
+    testResultsFormat: JUnit
+    testResultsFiles: "**/TESTS*.xml"
+  condition: succeededOrFailed()
+  displayName: Publish test results

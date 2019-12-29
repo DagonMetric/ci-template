@@ -1,0 +1,5 @@
+steps:
+- script: |
+    npm run lint --if-present
+  condition: and(succeeded(), ne(variables['skipLint'], 'true'))
+  displayName: Run lint

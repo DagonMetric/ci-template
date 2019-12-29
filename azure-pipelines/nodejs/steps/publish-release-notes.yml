@@ -1,0 +1,7 @@
+steps:
+- task: PublishPipelineArtifact@0
+  inputs:
+    artifactName: 'release-notes'
+    targetPath: release-notes/v$(packageVersion)
+  condition: and(succeeded(), contains(variables['Build.SourceBranch'], 'refs/tags/'))
+  displayName: Publish release notes

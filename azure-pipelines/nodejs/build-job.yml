@@ -1,0 +1,45 @@
+parameters:
+  name: 'linux'
+  dependsOn: ''
+  vmImage: 'ubuntu-latest'
+  runLint: 'true'
+  publishBuildArtifacts: 'true'
+  publishTestArtifacts: 'true'
+  publishCodeCoverageArtifacts: 'true'
+  publishReleaseNotes: 'true'
+  additionalVariables: {}
+
+jobs:
+  - job: ${{ parameters.name }}
+    variables:
+      ${{ insert }}: ${{ parameters.additionalVariables }}
+    dependsOn:
+      - ${{ if parameters.dependsOn }}:
+        - ${{ parameters.dependsOn }}
+    condition: and(succeeded(), ne(variables.skipJob, 'true'))
+    strategy:
+      ${{ if parameters.maxParallel }}:
+        maxParallel: ${{ parameters.maxParallel }}
+      ${{ if parameters.matrix }}:
+        matrix: ${{ parameters.matrix }}
+    pool:
+      vmImage: ${{ parameters.vmImage }}
+    steps:
+      - task: UseNode@1
+        inputs:
+          version: $(nodeVersion)
+        displayName: Use Node $(nodeVersion)
+      - template: steps/install.yml
+      - template: steps/set-package-info-variables.yml
+      - ${{ if eq(parameters.runLint, 'true') }}:
+        - template: steps/lint.yml
+      - template: steps/build.yml
+      - ${{ if eq(parameters.publishBuildArtifacts, 'true') }}:
+        - template: steps/publish-build-results.yml
+      - template: steps/test.yml
+      - ${{ if eq(parameters.publishTestArtifacts, 'true') }}:
+        - template: steps/publish-test-results.yml
+      - ${{ if eq(parameters.publishCodeCoverageArtifacts, 'true') }}:
+        - template: steps/publish-code-coverage-results.yml
+      - ${{ if eq(parameters.publishReleaseNotes, 'true') }}:
+        - template: steps/publish-release-notes.yml

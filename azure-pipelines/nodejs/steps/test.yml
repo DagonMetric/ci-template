@@ -1,0 +1,4 @@
+steps:
+- script: |
+    npm test -- -c=ci
+  displayName: Run test
