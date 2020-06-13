@@ -1,5 +1,5 @@
 steps:
-- task: PublishPipelineArtifact@0
+- task: PublishPipelineArtifact@1
   inputs:
     artifactName: 'release-notes'
     targetPath: release-notes/v$(packageVersion)
