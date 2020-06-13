@@ -1,4 +1,5 @@
 steps:
 - script: |
-    npm test -- -c=ci
-  displayName: Run test
+    npm run test --if-present -- -c=ci
+    npm run e2e --if-present -- -c=ci
+  displayName: Run tests
