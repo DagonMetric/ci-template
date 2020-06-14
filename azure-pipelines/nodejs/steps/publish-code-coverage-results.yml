@@ -2,8 +2,8 @@ steps:
 - task: PublishCodeCoverageResults@1
   inputs:
     codeCoverageTool: Cobertura
-    summaryFileLocation: dist/coverage/$(packageName)/cobertura-coverage.xml
-    reportDirectory: dist/coverage/$(packageName)
+    summaryFileLocation: coverage/$(packageName)/cobertura-coverage.xml
+    reportDirectory: coverage/$(packageName)
     failIfCoverageEmpty: true
   condition: succeededOrFailed()
   displayName: Publish code coverage results
