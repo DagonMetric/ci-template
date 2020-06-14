@@ -1,6 +1,6 @@
 steps:
 - task: PublishPipelineArtifact@1
   inputs:
-    artifactName: 'packages'
-    targetPath: 'dist/packages'
+    artifactName: 'dist'
+    targetPath: 'dist'
   displayName: Publish build artifacts
