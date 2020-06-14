@@ -4,7 +4,6 @@ parameters:
   vmImage: 'ubuntu-latest'
   runLint: 'true'
   publishBuildArtifacts: 'true'
-  publishPackagesArtifacts: 'true'
   publishTestArtifacts: 'true'
   publishCodeCoverageArtifacts: 'true'
   publishReleaseNotes: 'true'
@@ -37,8 +36,6 @@ jobs:
       - template: steps/build.yml
       - ${{ if eq(parameters.publishBuildArtifacts, 'true') }}:
         - template: steps/publish-build-results.yml
-      - ${{ if eq(parameters.publishPackagesArtifacts, 'true') }}:
-        - template: steps/publish-packages-results.yml
       - template: steps/test.yml
       - ${{ if eq(parameters.publishTestArtifacts, 'true') }}:
         - template: steps/publish-test-results.yml

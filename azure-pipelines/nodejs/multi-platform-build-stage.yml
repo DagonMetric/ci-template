@@ -1,7 +1,6 @@
 parameters:
   name: 'multi_platform_build'
   publishBuildArtifacts: 'true'
-  publishPackagesArtifacts: 'true'
   publishTestArtifacts: 'true'
   publishCodeCoverageArtifacts: 'true'
   publishReleaseNotes: 'true'
@@ -13,7 +12,6 @@ stages:
     parameters:
       name: 'linux'
       publishBuildArtifacts: ${{ parameters.publishBuildArtifacts }}
-      publishPackagesArtifacts: ${{ parameters.publishPackagesArtifacts }}
       publishTestArtifacts: ${{ parameters.publishTestArtifacts }}
       publishCodeCoverageArtifacts: ${{ parameters.publishCodeCoverageArtifacts }}
       publishReleaseNotes: ${{ parameters.publishReleaseNotes }}
@@ -27,7 +25,6 @@ stages:
       vmImage: 'macOS-latest'
       # dependsOn: 'linux'
       publishBuildArtifacts: 'false'
-      publishPackagesArtifacts: 'false'
       publishTestArtifacts: 'false'
       publishCodeCoverageArtifacts: 'false'
       publishReleaseNotes: 'false'
@@ -43,7 +40,6 @@ stages:
       vmImage: 'windows-latest'
       # dependsOn: 'linux'
       publishBuildArtifacts: 'false'
-      publishPackagesArtifacts: 'false'
       publishTestArtifacts: 'false'
       publishCodeCoverageArtifacts: 'false'
       publishReleaseNotes: 'false'
