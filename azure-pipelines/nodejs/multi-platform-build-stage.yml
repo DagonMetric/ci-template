@@ -16,8 +16,8 @@ stages:
       publishCodeCoverageArtifacts: ${{ parameters.publishCodeCoverageArtifacts }}
       publishReleaseNotes: ${{ parameters.publishReleaseNotes }}
       matrix:
-        node-12:
-          nodeVersion: '12.x'
+        node-14:
+          nodeVersion: '14.x'
 
   # - template: build-job.yml
   #   parameters:
@@ -29,8 +29,8 @@ stages:
   #     publishCodeCoverageArtifacts: 'false'
   #     publishReleaseNotes: 'false'
   #     matrix:
-  #       node-12:
-  #         nodeVersion: '12.x'
+  #       node-14:
+  #         nodeVersion: '14.x'
   #     additionalVariables:
   #       skipJob: $[variables.skipMacOSJob]
 
@@ -44,7 +44,7 @@ stages:
   #     publishCodeCoverageArtifacts: 'false'
   #     publishReleaseNotes: 'false'
   #     matrix:
-  #       node-12:
-  #         nodeVersion: '12.x'
+  #       node-14:
+  #         nodeVersion: '14.x'
   #     additionalVariables:
   #       skipJob: $[variables.skipWindowsJob]
